@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
  // RestController (на відміну від Controller) бере дані, які ми повертаємо, та перетвоює в JSON
- // і автоматично вішає анотацію @ResponseBody
+ //          і автоматично вішає анотацію @ResponseBody
 @RestController
 @RequestMapping(value = "/movies")
 public class MovieController {
