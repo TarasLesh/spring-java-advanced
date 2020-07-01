@@ -18,4 +18,5 @@ public class Movie {
     @Column(length = 355, nullable = false) // зміна довжити на 355 (замість 255 для varchar), і не NonNull
     private String title;
     private String description;
+
 }
