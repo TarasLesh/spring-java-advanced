@@ -3,9 +3,11 @@ package com.okren.spring_java_advanced.controller;
 import com.okren.spring_java_advanced.model.Movie;
 import com.okren.spring_java_advanced.repository.MovieRepository;
 import com.okren.spring_java_advanced.service.IMovieService;
+import com.okren.spring_java_advanced.validation.MovieValidator;
 import org.springframework.beans.InvalidPropertyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -20,8 +22,11 @@ import java.util.Optional;
 public class MovieController {
 
     @Autowired
-//    private MovieRepository movieRepository;  //  було оки не створили МувіСервіс рівень
+//    private MovieRepository movieRepository;  //  було поки не створили МувіСервіс рівень
     private IMovieService movieService;
+
+    @Autowired
+    private MovieValidator movieValidator;
 
 
     //    public MovieController(MovieRepository movieRepository) {
@@ -116,6 +121,10 @@ public class MovieController {
 
     }
 
+    @InitBinder
+    private void initBinder(WebDataBinder webDataBinder){
+        webDataBinder.addValidators(movieValidator);   // добавляємо новий Валідатор
+    }
 
 
 }
