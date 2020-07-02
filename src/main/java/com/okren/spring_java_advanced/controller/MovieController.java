@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -55,7 +56,7 @@ public class MovieController {
     @RequestMapping(method = RequestMethod.POST)  //  /movies/add   якщо додати   , path = "/add"
     @ResponseStatus(HttpStatus.CREATED)
 //      public  ResponseEntity<Movie> createMovie(@RequestBody Movie movie) {
-    public Movie createMovie(@RequestBody Movie movie) {
+    public Movie createMovie(@RequestBody @Valid Movie movie) {
         return movieService.insertMovie(movie);
         //        movies.add(movie);   // було без анотації @Autowired
 
