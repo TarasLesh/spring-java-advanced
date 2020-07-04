@@ -1,5 +1,6 @@
 package com.okren.spring_java_advanced.model;
 
+import com.okren.spring_java_advanced.validation.UniqueMovieTitle;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Generated;
@@ -19,6 +20,7 @@ public class Movie {
     private int id;
     @Column(length = 355, nullable = false) // зміна довжити на 355 (замість 255 для varchar), і не NonNull
     @NotBlank   //  не пуста стрічка, або не заповнена пробілом
+    @UniqueMovieTitle  // власний валідатор
     private String title;
     @NotBlank
     private String description;
