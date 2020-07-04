@@ -2,6 +2,7 @@ package com.okren.spring_java_advanced.service;
 
 import com.okren.spring_java_advanced.model.Movie;
 import com.okren.spring_java_advanced.repository.MovieRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
+@Slf4j
 @Service
 public class MovieService implements IMovieService {
 
@@ -31,6 +33,7 @@ public class MovieService implements IMovieService {
         if (!movieRepository.findByTitle(movie.getTitle()).isPresent()) {   // перевіряємо на унікальність даних, які записуються
             return movieRepository.save(movie);
         } else {
+            log.info("Movie with title "+movie.getTitle()+" already exists in DB!");
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This movie title already exists!");
         }
     }
