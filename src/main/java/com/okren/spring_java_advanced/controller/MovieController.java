@@ -58,11 +58,11 @@ public class MovieController {
     }
 //        public List<Movie> getMovies() { return movies; }  // було без анотації @Autowired
 
-    @RequestMapping(method = RequestMethod.POST)  //  /movies/add   якщо додати   , path = "/add"
+    @RequestMapping(method = RequestMethod.POST, value = "/{directorId}")  //  /movies/add   якщо додати   , path = "/add"
     @ResponseStatus(HttpStatus.CREATED)
-//      public  ResponseEntity<Movie> createMovie(@RequestBody Movie movie) {
-    public Movie createMovie(@RequestBody @Valid Movie movie) {
-        return movieService.insertMovie(movie);
+    public Movie createMovie(@RequestBody @Valid Movie movie, @PathVariable int directorId) {
+        return movieService.insertMovie(movie, directorId);
+        //      public  ResponseEntity<Movie> createMovie(@RequestBody Movie movie) {
         //        movies.add(movie);   // було без анотації @Autowired
 
 //        return ResponseEntity.accepted().body(movie);

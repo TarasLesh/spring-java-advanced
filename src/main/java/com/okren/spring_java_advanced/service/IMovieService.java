@@ -10,7 +10,7 @@ public interface IMovieService {
 
     List<Movie> getAllMovies();
 
-    Movie insertMovie(Movie movie);
+    Movie insertMovie(Movie movie, int directorId);
 
     Movie updateMovie(Movie movie);
 }
