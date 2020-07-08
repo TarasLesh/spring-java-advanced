@@ -30,8 +30,8 @@ public class Movie {
     private int duration;
 
     @ManyToOne(targetEntity = Director.class, optional = false, cascade = CascadeType.PERSIST)  // Movie дивиться на Director. Мене багато - він один.
-    // JoinColumn in that case is optional
-//    @JoinColumn(name = "director_id", insertable = false, updatable = false, nullable = false)  // говорить до якої колонки підключатись (як має називатись колонка (зовнішній ключ) на Movie), і ми не можемо мінять будь-яким чином
+//    // JoinColumn in that case is optional
+////    @JoinColumn(name = "director_id", insertable = false, updatable = false, nullable = false)  // говорить до якої колонки підключатись (як має називатись колонка (зовнішній ключ) на Movie), і ми не можемо мінять будь-яким чином
     @JsonIgnore  // не буде надсилатись director разом з movie
     private Director director;
 
