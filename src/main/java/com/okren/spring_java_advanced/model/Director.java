@@ -27,9 +27,9 @@ public class Director {
     private LocalDate birthDate;   // новий клас для роботи з датами (пакет java.time). Ще є LocalDateTime, LocalTime
 
     //  робимо bidirectional зв'язок
-    @OneToMany(targetEntity = Movie.class, mappedBy = "director")
+    @OneToMany(targetEntity = Movie.class, mappedBy = "director")  //mappedBy - Вказуємо яке java-поле java-класу відповідає за цей зв’язок на іншій стороні
 //    @OneToMany(targetEntity = Movie.class)
-    @JoinColumn(name = "director_id", insertable = false, updatable = false, nullable = false)  // в Movie створиться поле director_id
+//    @JoinColumn(name = "director_id", insertable = false, updatable = false, nullable = false)  // в Movie створиться поле director_id при unidirectional
     private List<Movie> movies;
 }
 

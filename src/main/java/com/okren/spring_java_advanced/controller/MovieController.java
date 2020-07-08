@@ -1,19 +1,17 @@
 package com.okren.spring_java_advanced.controller;
 
+import com.okren.spring_java_advanced.dtos.MovieDTO;
 import com.okren.spring_java_advanced.model.Movie;
-import com.okren.spring_java_advanced.repository.MovieRepository;
 import com.okren.spring_java_advanced.service.IMovieService;
 import com.okren.spring_java_advanced.validation.MovieValidator;
-import org.springframework.beans.InvalidPropertyException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 // RestController (на відміну від Controller) бере дані, які ми повертаємо, та перетвоює в JSON
 //          і автоматично вішає анотацію @ResponseBody
@@ -49,9 +47,10 @@ public class MovieController {
     @RequestMapping(method = RequestMethod.GET)
 
 //  public @ResponseBody // анотація ResponseBody конвертувала дані в JSON
-    public List<Movie> getMovies() {
+    public MovieDTO getMovies(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "3") int size) {
 
-        return movieService.getAllMovies();
+        PageRequest pageRequest = PageRequest.of(page, size);
+        return movieService.getMovies(pageRequest);
 
 //        System.out.println("i am here " + movieRepository.count());
 //        System.out.println("i am here " + movieRepository.findAll());

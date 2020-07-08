@@ -1,15 +1,16 @@
 package com.okren.spring_java_advanced.service;
 
+import com.okren.spring_java_advanced.dtos.MovieDTO;
 import com.okren.spring_java_advanced.model.Movie;
 import com.okren.spring_java_advanced.repository.DirectorRepository;
 import com.okren.spring_java_advanced.repository.MovieRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
-import java.util.List;
 
 @Slf4j
 @Service
@@ -27,8 +28,17 @@ public class MovieService implements IMovieService {
     }
 
     @Override
-    public List<Movie> getAllMovies() {
-        return movieRepository.findAll();
+    public MovieDTO getMovies(PageRequest pageRequest) {  // Отримаємо     "content": , "pageable": , "sort": ,  "totalPages": 4,   "totalElements": 12,   "last": false, .. Для того щоб ці всі дані не передавати на FrontEnd:
+
+
+        Page<Movie> moviePages = movieRepository.findAll(pageRequest);
+        MovieDTO movieDTO = new MovieDTO();
+        movieDTO.setMovies(moviePages.getContent());
+        movieDTO.setTotalPages(moviePages.getTotalPages());
+        movieDTO.setPagesCount(moviePages.getTotalPages());
+        movieDTO.setEmpty(moviePages.isEmpty());
+        movieDTO.setLast(moviePages.isLast());
+        return movieDTO;
     }
 
     @Override
