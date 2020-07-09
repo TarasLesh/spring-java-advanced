@@ -28,8 +28,7 @@ public class MovieService implements IMovieService {
     }
 
     @Override
-    public MovieDTO getMovies(PageRequest pageRequest) {  // Отримаємо     "content": , "pageable": , "sort": ,  "totalPages": 4,   "totalElements": 12,   "last": false, .. Для того щоб ці всі дані не передавати на FrontEnd:
-
+    public MovieDTO getMovies(PageRequest pageRequest) {  // При List<Movie> отримаємо     "content": , "pageable": , "sort": ,  "totalPages": 4,   "totalElements": 12,   "last": false, .. Для того щоб ці всі дані не передавати на FrontEnd:
 
         Page<Movie> moviePages = movieRepository.findAll(pageRequest);
         MovieDTO movieDTO = new MovieDTO();
