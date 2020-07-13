@@ -11,7 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.security.Principal;
 
 // RestController (на відміну від Controller) бере дані, які ми повертаємо, та перетвоює в JSON
 //          і автоматично вішає анотацію @ResponseBody
@@ -47,7 +49,11 @@ public class MovieController {
     @RequestMapping(method = RequestMethod.GET)
 
 //  public @ResponseBody // анотація ResponseBody конвертувала дані в JSON
-    public MovieDTO getMovies(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "3") int size) {
+    public MovieDTO getMovies(@RequestParam(defaultValue = "0") int page,
+                              @RequestParam(defaultValue = "3") int size,
+                              HttpServletRequest request,
+                              Principal principal
+                              ) {
 
         PageRequest pageRequest = PageRequest.of(page, size);
         return movieService.getMovies(pageRequest);
