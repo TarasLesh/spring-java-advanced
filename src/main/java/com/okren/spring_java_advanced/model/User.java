@@ -42,24 +42,27 @@ public class User implements UserDetails {
         return Collections.singletonList(new SimpleGrantedAuthority(role));  // GrantedAuthority - це інтерфейс, а SimpleGrantedAuthority - це клас, який реалізував даний інтерфейс і який приймає нашу роль.
     }                   // singletonList - List з одним елементом.
 
+
+    // ці гетери мають повертати true, щоб акаунт нормально аутентифікувався!
+    // тоді в UserService.LoadUserByUsername можна повертати наш клас User, а не спрінговий.
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 
 

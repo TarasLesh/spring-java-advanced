@@ -22,25 +22,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-//        auth.inMemoryAuthentication()
-//                .withUser("user").password("user").roles("USER").and()
-//                .withUser("admin").password("admin").roles("ADMIN")
-//                .and()
-//                .and()
-//        .userDetailsService(userDetailsService)
-//        ;
+        auth.inMemoryAuthentication()
+                .withUser("user").password("user").roles("USER").and()
+                .withUser("admin").password("admin").roles("ADMIN")
+                .and()
+                .and()
+        .userDetailsService(userDetailsService).passwordEncoder(passwordEncoder())
+        ;
 
-        auth.authenticationProvider(daoAuthenticationProvider());
+//        auth.authenticationProvider(daoAuthenticationProvider());
 
     }
 
-    @Bean
-    public DaoAuthenticationProvider daoAuthenticationProvider(){
-        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-        daoAuthenticationProvider.setUserDetailsService(userDetailsService);
-        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
-        return daoAuthenticationProvider;
-    }
+//    @Bean
+//    public DaoAuthenticationProvider daoAuthenticationProvider(){
+//        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+//        daoAuthenticationProvider.setUserDetailsService(userDetailsService);
+//        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+//        return daoAuthenticationProvider;
+//    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
