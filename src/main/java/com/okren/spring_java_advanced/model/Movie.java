@@ -18,7 +18,7 @@ import javax.validation.constraints.Positive;
 public class Movie {
     @Id  // id в таблиці. вішається над полем, яке буде ID
     @GeneratedValue(strategy = GenerationType.IDENTITY)  // автогенерація ID
-    @JsonIgnore     // поле буде ігноруватись. Не буде відображатись в Response (не відправлятись на клієнт) і не буде хотіти щоб його заповнили.
+//    @JsonIgnore     // поле буде ігноруватись. Не буде відображатись в Response (не відправлятись на клієнт) і не буде хотіти щоб його заповнили.
     private int id;
     @Column(length = 355, nullable = false) // зміна довжити на 355 (замість 255 для varchar), і не NonNull
     @NotBlank   //  не пуста стрічка, або не заповнена пробілом
